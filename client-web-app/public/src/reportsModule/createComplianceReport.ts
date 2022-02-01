@@ -32,7 +32,7 @@ class ComplianceReportGenerator {
 
     }
 
-    generateTable(doc) {
+    generateMainPageTable(doc) {
         const tableTop = 270
 
         doc
@@ -91,7 +91,7 @@ class ComplianceReportGenerator {
         }
     }
 
-    generateFooter(doc) {
+    generateBlackBgFooter(doc) {
         var img = doc.openImage('../images/footerBg.png');
         var imageHeight=(img.height/img.width)*doc.page.width;
         imageHeight=doc.page.height-imageHeight;
@@ -127,7 +127,20 @@ class ComplianceReportGenerator {
                 align: 'left'
             })               
     }
-
+    generateWhiteBgFooter(doc) {
+        var img = doc.openImage('../images/footer-logo.png');
+        var imageHeight=(img.height/img.width)*doc.page.width;
+        imageHeight=doc.page.height-imageHeight;
+        doc.image('../images/footer-logo.png', doc.page.width/2, doc.page.height-doc.page.margins.bottom-45, {fit: [20, 20],  align: 'center', valign:
+'center'});
+            doc.fillColor('black')
+            .fontSize(8)
+            .text('Confidential Report | Do Not Distribute | Prepared by Rikor | Insurance Consultanctu | Proprietary Report'
+            , doc.page.margins.left,  doc.page.height-doc.page.margins.bottom-20,
+             {
+                align: 'center'
+            })               
+    }
     secondPageSummary(doc){
 
         doc.fontSize('12')
@@ -236,20 +249,7 @@ class ComplianceReportGenerator {
        
     }
 
-    generateSecondPageFooter(doc) {
-        var img = doc.openImage('../images/footer-logo.png');
-        var imageHeight=(img.height/img.width)*doc.page.width;
-        imageHeight=doc.page.height-imageHeight;
-        doc.image('../images/footer-logo.png', doc.page.width/2, doc.page.height-doc.page.margins.bottom-45, {fit: [20, 20],  align: 'center', valign:
-'center'});
-            doc.fillColor('black')
-            .fontSize(8)
-            .text('Confidential Report | Do Not Distribute | Prepared by Rikor | Insurance Consultanctu | Proprietary Report'
-            , doc.page.margins.left,  doc.page.height-doc.page.margins.bottom-20,
-             {
-                align: 'center'
-            })               
-    }
+  
 
     detailedReportSummary(doc){
 
@@ -278,25 +278,26 @@ class ComplianceReportGenerator {
         }
     }
 
-    generate() {
+    generate(fileDestination) {
         let theOutput = new PDFGenerator ({autoFirstPage: false})
         theOutput.addPage({
             margins: {right:20}
         });
 
-        const fileName = `Compliance- ${Math.random()}.pdf`
+        
 
         // pipe to a writable stream which would save the result into the same directory
-        theOutput.pipe(fs.createWriteStream(fileName))
+        theOutput.pipe(fs.createWriteStream(fileDestination))
 
         this.generateHeaders(theOutput)
 
         theOutput.moveDown()
 
-        this.generateTable(theOutput)
+        this.generateMainPageTable(theOutput)
 
-        this.generateFooter(theOutput)
+        this.generateBlackBgFooter(theOutput)
         
+        // Second Page
         theOutput.addPage({
             margins: {
                 right:50,
@@ -309,7 +310,7 @@ class ComplianceReportGenerator {
         this.secondPageAudit(theOutput);
         theOutput.moveDown()
         this.secondPageLiability(theOutput);
-        this.generateSecondPageFooter(theOutput);
+        this.generateWhiteBgFooter(theOutput);
 
         // Third page
 
@@ -324,7 +325,7 @@ class ComplianceReportGenerator {
 
         this.detailedReportSummary(theOutput);
         this.detailedReportFactors(theOutput);
-        this.generateSecondPageFooter(theOutput);
+        this.generateWhiteBgFooter(theOutput);
         // write out file
         theOutput.end()
 
