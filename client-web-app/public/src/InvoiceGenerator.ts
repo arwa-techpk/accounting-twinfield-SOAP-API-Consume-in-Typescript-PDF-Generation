@@ -251,16 +251,14 @@ doc.fontSize(15).fillColor('white')
             })               
     }
 
-    generate() {
+    generate(fileDestination) {
         let theOutput = new PDFGenerator ({autoFirstPage: false})
         theOutput.addPage({
             margins: {right:20}
         });
 
-        const fileName = `../reports/Compliance- ${Math.random()}.pdf`
-console.log(fileName)
         // pipe to a writable stream which would save the result into the same directory
-        theOutput.pipe(fs.createWriteStream(fileName))
+        theOutput.pipe(fs.createWriteStream(fileDestination))
 
         this.generateHeaders(theOutput)
 

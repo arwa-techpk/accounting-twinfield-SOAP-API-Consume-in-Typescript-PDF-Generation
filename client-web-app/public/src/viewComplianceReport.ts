@@ -116,5 +116,6 @@ const complianceData = {
     ],
 }
 
-const ig = new ComplianceGenerator(complianceData)
-ig.generate()
+const ig = new ComplianceGenerator(complianceData);
+let fileDestination= `Compliance- ${Math.random()}.pdf`
+ig.generate(fileDestination)
