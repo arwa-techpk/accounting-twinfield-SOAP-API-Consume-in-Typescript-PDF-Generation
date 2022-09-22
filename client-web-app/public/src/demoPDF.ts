@@ -25,16 +25,15 @@ const invoiceData = {
     },
     memo: 'As discussed',
     documentPrepareFor:[
-        'Susan McKay', 
-        'Home Pro LLC dba', 
-        'Pro Housepainting',
-        '88 Wood Dr',
-        'Houston Tx 77039'],
+        'Azhar',
+        'Arwa Technologies',
+        'azhar@arwatechnologies.com',
+        '030069887555'],
     documentPrepareBy:[
-        'Wade Millward',
-        'Rikor Insurance Consultancy',
-        'wade.milward@rikor.io',
-        '801-210-0406'
+        'Azhar',
+        'Arwa Technologies',
+        'azhar@arwatechnologies.com',
+        '030069887555'
     ],
     franchisorRiskProfile:[
         'Pro Housepainting'
