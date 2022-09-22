@@ -18,10 +18,10 @@ class ComplianceReportGenerator {
     }
     generateHeaders(doc) {
         // Fit the image in the dimensions, and center it both horizontally and vertically
-        doc.image('./logoRikor.jpg', 200, 50, { width:200, align: 'center', valign:'center'});
+        doc.image('./logo.jpg', 200, 50, { width:200, align: 'center', valign:'center'});
         
         doc.fontSize('25').font(themeFont)
-        doc.text('Rikor Insurance Compilance Report', 100, 200, {
+        doc.text('Azhar deme Compilance Report', 100, 200, {
             align: 'justify'
         })
 
@@ -105,7 +105,7 @@ class ComplianceReportGenerator {
             })
             doc
             .fontSize(16).font(themeFont)
-            .text('wade.millward@rikor.io', 170, imageHeight+10, {
+            .text('azhar@arwatechnologies.com', 170, imageHeight+10, {
                 align: 'left'
             })
         
@@ -123,7 +123,7 @@ class ComplianceReportGenerator {
             })  
             doc
             .fontSize(10)
-            .text('Confidential Report | Do Not Distribute | Prepared by Rikor | Insurance Consultanctu | Proprietary Report', 50,  doc.page.height-20, {
+            .text('Confidential Report | Do Not Distribute | Prepared by Azhar | Insurance Consultanctu | Proprietary Report', 50,  doc.page.height-20, {
                 align: 'left'
             })               
     }
